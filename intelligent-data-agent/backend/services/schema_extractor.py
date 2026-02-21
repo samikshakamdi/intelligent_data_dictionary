@@ -1,8 +1,15 @@
 from sqlalchemy import inspect
-from database import engine
+from database import get_engine
 
 def extract_schema():
-    inspector = inspect(engine)
+    try:
+        engine = get_engine()
+        inspector = inspect(engine)
+    except Exception as e:
+        # Handle the exception, e.g., log it or raise a custom error
+        print(f"Error initializing database engine or inspector: {e}")
+        return {} # Return an empty schema or re-raise the exception
+    
     schema_info = {}
     
     for table_name in inspector.get_table_names():

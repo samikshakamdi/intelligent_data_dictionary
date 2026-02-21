@@ -1,8 +1,9 @@
 import pandas as pd
-from database import engine
+from database import get_engine
 
 def calculate_data_quality(table_name: str):
     try:
+        engine = get_engine()
         # Read table data from sqlite
         df = pd.read_sql_table(table_name, engine)
         
