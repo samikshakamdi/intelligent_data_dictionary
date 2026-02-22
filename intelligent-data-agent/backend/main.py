@@ -138,3 +138,12 @@ def connect_external_db(payload: dict = Body(...)):
         return {"message": msg}
     else:
         return {"error": msg}
+
+import os
+from fastapi.staticfiles import StaticFiles
+
+# Mount the static frontend securely. This must be the *last* route added
+# so that it doesn't try to intercept /api routes.
+frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend"))
+if os.path.exists(frontend_path):
+    app.mount("/", StaticFiles(directory=frontend_path, html=True), name="frontend")

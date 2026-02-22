@@ -1,7 +1,8 @@
 const { useState, useEffect } = React;
 
-const API_URL = "http://127.0.0.1:8080/api";
-
+// Auto-detect if we're running locally from file/localhost or deployed
+const isLocal = window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_URL = isLocal ? "http://127.0.0.1:8000/api" : "/api";
 function App() {
     const [activeTab, setActiveTab] = useState('schema');
     const [isUploading, setIsUploading] = useState(false);
