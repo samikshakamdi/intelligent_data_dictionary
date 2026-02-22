@@ -675,8 +675,8 @@ function RelationshipsTab({ tableName, tablesCount }) {
                                                             padding: '1rem',
                                                             borderBottom: '1px solid rgba(255,255,255,0.05)',
                                                             background: cellColor,
-                                                            color: Math.abs(val) > 0.5 ? '#fff' : 'inherit',
-                                                            fontWeight: Math.abs(val) > 0.7 ? 'bold' : 'normal'
+                                                            color: val !== null && Math.abs(val) > 0.5 ? '#fff' : 'inherit',
+                                                            fontWeight: val !== null && Math.abs(val) > 0.7 ? 'bold' : 'normal'
                                                         }}>
                                                             {val !== null ? val.toFixed(2) : '-'}
                                                         </td>
